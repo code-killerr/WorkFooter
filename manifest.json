@@ -1,0 +1,15 @@
+﻿{
+  "name": "Footer",
+  "manifest_version": 2,
+  "version": "1.0",
+  "description": "语音识别便利选择插件",
+  "browser_action": {
+    "default_icon": "1.png"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://test.baidu.com/mark/task/do/id/*"],
+      "js": ["a.js"]
+    }
+  ]
+}
