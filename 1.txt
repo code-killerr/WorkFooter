@@ -1,21 +1,27 @@
 var btn1=document.createElement("button");
-   btn1.innerHTML = "“ª∫≈"
+   btn1.innerHTML = "‰∏ÄÂè∑"
    btn1.value="1";
    btn1.onclick=chose1;
    btn1.setAttribute('style', 'width: 100px;height:50px;margin-left:500px;margin-top:100px');
    document.getElementById("filter-panel").appendChild(btn1);
 var btn2=document.createElement("button");
-   btn2.innerHTML = "∂˛∫≈"
+   btn2.innerHTML = "‰∫åÂè∑"
    btn2.value="2";
    btn2.onclick=chose2;
    btn2.setAttribute('style', 'width: 100px;height:50px;margin-left:500px');
    document.getElementById("filter-panel").appendChild(btn2);
 var btn3=document.createElement("button");
-   btn3.innerHTML = "»˝∫≈"
+   btn3.innerHTML = "‰∏âÂè∑"
    btn3.value="2";
    btn3.onclick=chose3;
    btn3.setAttribute('style', 'width: 100px;height:50px;margin-left:500px');
    document.getElementById("filter-panel").appendChild(btn3);
+var btn4=document.createElement("button");
+   btn4.innerHTML = "Êó†Êïà"
+   btn4.value="2";
+   btn4.onclick=chose4;
+   btn4.setAttribute('style', 'width: 100px;height:50px;margin-left:500px');
+   document.getElementById("filter-panel").appendChild(btn4);
 var value = document.getElementById("com_mark_response_text_2").value
 function chose1(){
     var value1 = new Array()
@@ -51,8 +57,12 @@ function chose3(){
        if(flag == 2){
             value3[j] = value[i];
             j ++;
-        }
+        }	
     }
     var res = value3.join("");
+    document.getElementById("com_mark_response_text_2").value = res;
+}
+function chose4(){
+    var res ="<sil>";
     document.getElementById("com_mark_response_text_2").value = res;
 }
