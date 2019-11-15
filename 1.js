@@ -35,7 +35,7 @@ var refresh=document.createElement("button");
 var value = null;
 
 function refresh1(){
-var value = document.getElementById("com_mark_response_text_2").value;
+value = document.getElementById("com_mark_response_text_2").value;
 console.log(value);
 }
 
