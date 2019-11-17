@@ -29,14 +29,78 @@ var refresh=document.createElement("button");
    refresh.setAttribute('style', 'width: 100px;height:50px;margin-left:700px');
    document.getElementById("filter-panel").appendChild(refresh);
 //转换数据
-var value = null;
+var data = null;
 var splitValue = new Array();
-var Num = ["一","二","三","四","五","六","七","八","九","十","百","千","万"];
+var Num = ["零","一","二","三","四","五","六","七","八","九","十","百","千","万"];
 var phoneNum=["零","幺","二","三","四","五","六","七","八","九"];
-//刷新数据
+//刷新数据并检测
 function refresh1(){
-	value = document.getElementById("com_mark_response_text_2").value;
-	splitValue = value.split(";");
+	data = document.getElementById("com_mark_response_text_2").value;
+	var write = data.split("");
+	var n = write.length;
+	var temp = 0,sign = false;
+	var ErSign = false,NumSign = false;
+	ErSign = /.*儿+.*/.test(data)//检测儿字出现
+	NumSign = /.*[0-9]+.*/.test(data)//检测数字
+	//检测运算符号
+	for(i = 0;i < n;i++){
+		if(write[i] == '+'){
+			write[i] = '加';
+		}
+		else if(write[i] == '-'){
+			write[i] = '减';
+		}
+		else if(write[i] == '='){
+			write[i] = '等';
+			write.splice(i+1,0,'于')
+			n +=1;
+		}
+		else if(write[i] == '.'){
+			write[i] = '点	';
+		}
+	}
+	//处理数字
+	if(NumSign){
+		var sign = confirm("该数字是否为非进制数字(电话号码，房间号等)?");
+		if(sign){
+			sign = confirm("该数字是否为电话号码?");
+			if(sign)
+				for(i=0;i<n;i++){
+					if(/^[0-9]$/.test(write[i])){
+						temp = write[i] - '0';
+						write[i] = phoneNum[temp];
+					}
+				}
+			else{
+				for(i=0;i<n;i++){
+					if(/^[0-9]$/.test(write[i])){
+						temp = write[i] - '0';
+						if(temp == '1')
+							write[i] = '一';
+						write[i] = phoneNum[temp];
+					}
+				}
+			}
+		}
+		else{
+			for(i=0;i<n;i++){
+				if(/^[0-9]$/.test(write[i])){
+					if(write[i+1]!=null&&/^[0-9]$/.test(write[i+1]))
+						write = translateToNum(write,i);
+					else{
+						temp = write[i] - '0';
+						write[i] = Num[temp];
+						}
+					}
+				}
+			}	
+		alert("已经自动转换,请自行确认一下是否正确");
+	}
+	if(ErSign){
+		alert("请注意有‘儿’字出没，小心整改");
+	}
+	data = write.join("");
+	splitValue = data.split(";");
 	console.log(splitValue);
 	return;
 }
@@ -44,7 +108,7 @@ function refresh1(){
 function chose1(){
 	if(splitValue[0] != null)
 		writeData(splitValue[0]);
-	else alert("请刷新数据");
+	else alert("无一号信息请刷新数据");
 		return;
 }
 
@@ -52,7 +116,7 @@ function chose2(){
 	
 	if(splitValue[1] != null)
 		writeData(splitValue[1]);
-	else alert("请刷新数据");
+	else alert("无二号信息请刷新数据");
 		return;
 	
 }
@@ -60,7 +124,7 @@ function chose2(){
 function chose3(){
 	if(splitValue[2] != null)
 		writeData(splitValue[2]);
-	else alert("请刷新数据");
+	else alert("无三号信息请刷新数据");
 		return;
 	
 }
@@ -69,52 +133,11 @@ function chose4(){
     var res ="<sil>";
     document.getElementById("com_mark_response_text_2").value = res;
 } 
-
-function writeData(data){
-	var write = new Array();
-	var temp = 0,sign = false,i = 0;
-	write = data.split("");
-	var n = write.length;
-	if(write[n] == "儿")//检测儿字出现
-		alert("注意有'儿'字在末尾出现");
-	for(i;i<n;i++)//检测数字出现
-	{
-		if('0'<=write[i]<='9'){
-			sign = true;
-			break;
-		}
-	}
-	if(sign){
-		sign = confirm("该数字是否为电话号码?");
-		if(sign){	
-			for(i;i<n;i++){
-				if('0'<=write[i]<='9'){
-					temp = write[i] - '0';
-					write[i] = phoneNum[temp];
-				}
-			}
-		}
-		else{
-			for(i;i<n;i++){
-				if('0'<=write[i]<='9'){
-					if('0'<=write[i+1]<='9')
-						write = translateToNum(write,i);
-					else{
-						temp = write[i] - '0';
-						write[i] = phoneNum[temp];
-						}
-					}
-				}
-			}
-		
-		
-		alert("已经自动转换,请自行确认一下是否正确");
-	}
-	
-	
-    var res = write.join("");
-    document.getElementById("com_mark_response_text_2").value = res;
+//输出数据
+function writeData(write){
+    document.getElementById("com_mark_response_text_2").value = write;
 }
+//预留进制转换接口
 function translateToNum(write,i){
 	return write;
 }
