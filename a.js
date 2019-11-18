@@ -28,8 +28,8 @@ var refresh=document.createElement("button");
    refresh.onclick=refresh1;
    refresh.setAttribute('style', 'width: 100px;height:50px;margin-left:700px');
    document.getElementById("filter-panel").appendChild(refresh);
-js_submit_btn.onclick=rest;
-js_return_btn.onclick=rest;
+js_submit_btn.onclick=restFin;
+js_return_btn.onclick=restReturn;
 //转换数据
 var data = null;
 var splitValue = new Array();
@@ -58,7 +58,7 @@ function refresh1(){
 			n +=1;
 		}
 		else if(write[i] == '.'){
-			write[i] = '点	';
+			write[i] = '点';
 		}
 	}
 	//处理数字
@@ -87,8 +87,10 @@ function refresh1(){
 		else{
 			for(i=0;i<n;i++){
 				if(/^[0-9]$/.test(write[i])){
-					if(write[i+1]!=null&&/^[0-9]$/.test(write[i+1]))
+					if(write[i+1]!=null&&/^[0-9]$/.test(write[i+1])){
 						write = translateToNum(write,i);
+                                                                                                n = write.length;
+                                                                                }
 					else{
 						temp = write[i] - '0';
 						write[i] = Num[temp];
@@ -141,9 +143,23 @@ function writeData(write){
 }
 //预留进制转换接口
 function translateToNum(write,i){
-	return write;
+var temp = 0;
+    if(write[i] == '1'){
+      write[i] = '十';
+      temp = write[i+1] - '0';
+      write[i+1] = Num[temp];
+    }
+    else{
+        temp = write[i] - '0';
+        write[i] = Num[temp];
+        write.splice(i+1,0,'十');
+        temp = write[i+2] - '0';
+        if(temp!='0')
+            write[i+2] = Num[temp];
+    }
+    return write;
 }
-//提交按钮处理
+//提交按钮接口
 function restFin(){
     //检测是否忽略选择选项
     data = document.getElementById("com_mark_response_text_2").value;
@@ -151,11 +167,10 @@ function restFin(){
         alert("注意选择框中存在分号");
     rest();
 }
-//预留归还题目按钮处理接口
+//预留归还题目功能接口
 function restReturn(){
     rest();
 }
-//数据重置
 function rest(){
     data = null;
     splitValue = new Array();
