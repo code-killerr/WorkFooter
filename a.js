@@ -143,6 +143,19 @@ function writeData(write){
 function translateToNum(write,i){
 	return write;
 }
+//提交按钮处理
+function restFin(){
+    //检测是否忽略选择选项
+    data = document.getElementById("com_mark_response_text_2").value;
+    if( /.*;+.*/.test(data))
+        alert("注意选择框中存在分号");
+    rest();
+}
+//预留归还题目按钮处理接口
+function restReturn(){
+    rest();
+}
+//数据重置
 function rest(){
     data = null;
     splitValue = new Array();
