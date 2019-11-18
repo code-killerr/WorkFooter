@@ -28,6 +28,8 @@ var refresh=document.createElement("button");
    refresh.onclick=refresh1;
    refresh.setAttribute('style', 'width: 100px;height:50px;margin-left:700px');
    document.getElementById("filter-panel").appendChild(refresh);
+js_submit_btn.onclick=rest;
+js_return_btn.onclick=rest;
 //转换数据
 var data = null;
 var splitValue = new Array();
@@ -140,4 +142,8 @@ function writeData(write){
 //预留进制转换接口
 function translateToNum(write,i){
 	return write;
+}
+function rest(){
+    data = null;
+    splitValue = new Array();
 }
