@@ -146,8 +146,11 @@ function translateToNum(write,i){
 var temp = 0;
     if(write[i] == '1'){
           write[i] = '十';
-          temp = write[i+1] - '0';
-          write[i+1] = Num[temp];
+          if(write[i+1]!='0'){
+              temp = write[i+1] - '0';
+              write[i+1] = Num[temp];
+            }
+         else{write.splice(i+1,1,'');}
     }
     else{
         temp = write[i] - '0';
