@@ -145,17 +145,19 @@ function writeData(write){
 function translateToNum(write,i){
 var temp = 0;
     if(write[i] == '1'){
-      write[i] = '十';
-      temp = write[i+1] - '0';
-      write[i+1] = Num[temp];
+          write[i] = '十';
+          temp = write[i+1] - '0';
+          write[i+1] = Num[temp];
     }
     else{
         temp = write[i] - '0';
         write[i] = Num[temp];
-        write.splice(i+1,0,'十');
-        temp = write[i+2] - '0';
-        if(temp!='0')
+        temp = write[i+1] - '0';
+        if(temp!=0){
+            write.splice(i+1,0,'十');
             write[i+2] = Num[temp];
+        }
+        else{write[i+1] = '十';}
     }
     return write;
 }
