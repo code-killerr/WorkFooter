@@ -106,6 +106,7 @@ function refresh1(){
 	data = write.join("");
 	splitValue = data.split(";");
 	console.log(splitValue);
+	chose1();
 	return;
 }
 //分割数据
