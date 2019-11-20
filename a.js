@@ -133,11 +133,15 @@ function chose3(){
 		return;
 	
 }
-
+//数据无效
 function chose4(){
     var res ="<sil>";
+    document.getElementById("com_mark_response_single_1").value = "102";
+    document.getElementById("com_mark_response_single_1").type = "";
+    document.getElementById("com_mark_response_single_3").value = "302";
+    document.getElementById("com_mark_response_single_3").type = "";
     document.getElementById("com_mark_response_text_2").value = res;
-} 
+}
 //输出数据
 function writeData(write){
     document.getElementById("com_mark_response_text_2").value = write;
