@@ -2,31 +2,31 @@
 var btn1=document.createElement("button");
    btn1.innerHTML = "一号"
    btn1.onclick=chose1;
-   btn1.setAttribute('style', 'width: 100px;height:50px;margin-left:700px;margin-top:50px');
+   btn1.setAttribute('style', 'width: 100px;height:50px;margin-left:-150px;float:left;margin-top:250px');
    document.getElementById("filter-panel").appendChild(btn1);
 
 var btn2=document.createElement("button");
    btn2.innerHTML = "二号"
    btn2.onclick=chose2;
-   btn2.setAttribute('style', 'width: 100px;height:50px;margin-left:700px');
+   btn2.setAttribute('style', 'width: 100px;height:50px;margin-left:-150px;float:left;margin-top:300px');
    document.getElementById("filter-panel").appendChild(btn2);
 
 var btn3=document.createElement("button");
    btn3.innerHTML = "三号"
    btn3.onclick=chose3;
-   btn3.setAttribute('style', 'width: 100px;height:50px;margin-left:700px');
+   btn3.setAttribute('style', 'width: 100px;height:50px;margin-left:-150px;float:left;margin-top:350px');
    document.getElementById("filter-panel").appendChild(btn3);
 
 var btn4=document.createElement("button");
    btn4.innerHTML = "无效"
    btn4.onclick=chose4;
-   btn4.setAttribute('style', 'width: 100px;height:50px;margin-left:700px');
+   btn4.setAttribute('style', 'width: 100px;height:50px;margin-left:-150px;float:left;margin-top:400px');
    document.getElementById("filter-panel").appendChild(btn4);
 
 var refresh=document.createElement("button");
    refresh.innerHTML = "刷新"
    refresh.onclick=refresh1;
-   refresh.setAttribute('style', 'width: 100px;height:50px;margin-left:700px');
+   refresh.setAttribute('style', 'width: 100px;height:50px;margin-left:-150px;float:left;margin-top:450px');
    document.getElementById("filter-panel").appendChild(refresh);
 js_submit_btn.onclick=restFin;
 js_return_btn.onclick=restReturn;
