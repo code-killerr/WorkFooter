@@ -77,9 +77,10 @@ function refresh1(){
 				for(i=0;i<n;i++){
 					if(/^[0-9]$/.test(write[i])){
 						temp = write[i] - '0';
-						if(temp == '1')
+						if(temp == 1)
 							write[i] = '一';
-						write[i] = phoneNum[temp];
+						else
+							write[i] = phoneNum[temp];
 					}
 				}
 			}
