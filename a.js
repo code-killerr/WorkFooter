@@ -28,8 +28,12 @@ var refresh=document.createElement("button");
    refresh.onclick=refresh1;
    refresh.setAttribute('style', 'width: 100px;height:50px;margin-left:-150px;float:left;margin-top:450px');
    document.getElementById("filter-panel").appendChild(refresh);
-js_submit_btn.onclick=restFin;
-js_return_btn.onclick=restReturn;
+var submitButton = document.getElementById("js_submit_btn");
+var returnButton = document.getElementById("js_return_btn");
+if(submitButton)
+	submitButton.onclick=restFin;
+if(returnButton)
+	returnButton.onclick=restReturn;
 //转换数据
 var data = null;
 var splitValue = new Array();
