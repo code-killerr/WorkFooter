@@ -116,25 +116,35 @@ function refresh1(){
 }
 //分割数据
 function chose1(){
-	if(splitValue[0] != null)
+	if(splitValue[0] != null){
 		writeData(splitValue[0]);
+		document.getElementById("com_mark_response_single_1").value = "101";
+	}
 	else alert("无一号信息请刷新数据");
+	document.getElementById("com_mark_response_single_1").value = "101";
 		return;
 }
 
 function chose2(){
 	
-	if(splitValue[1] != null)
+	if(splitValue[1] != null){
 		writeData(splitValue[1]);
+		document.getElementById("com_mark_response_single_1").value = "101";
+	}
 	else alert("无二号信息请刷新数据");
+	document.getElementById("com_mark_response_single_1").value = "101";
 		return;
 	
 }
 
 function chose3(){
-	if(splitValue[2] != null)
+	if(splitValue[2] != null){
 		writeData(splitValue[2]);
+		document.getElementById("com_mark_response_single_1").value = "101";
+	}
+		
 	else alert("无三号信息请刷新数据");
+	
 		return;
 	
 }
