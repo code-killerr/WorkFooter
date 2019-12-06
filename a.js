@@ -1,30 +1,35 @@
 //按钮样式
+var text=document.createElement("div");
+   text.innerHTML = "注意以下键位除提交外均为小键盘，8为儿童选项，1为归还题目，大小写键为提交，F5为刷新页面"
+   text.setAttribute('style', 'width: 100px;height:100px;margin-left:-150px;float:left;margin-top:100px');
+   document.getElementById("filter-panel").appendChild(text);
+
 var btn1=document.createElement("button");
-   btn1.innerHTML = "一号"
+   btn1.innerHTML = "一号(4)"
    btn1.onclick=chose1;
    btn1.setAttribute('style', 'width: 100px;height:50px;margin-left:-150px;float:left;margin-top:250px');
    document.getElementById("filter-panel").appendChild(btn1);
 
 var btn2=document.createElement("button");
-   btn2.innerHTML = "二号"
+   btn2.innerHTML = "二号(5)"
    btn2.onclick=chose2;
    btn2.setAttribute('style', 'width: 100px;height:50px;margin-left:-150px;float:left;margin-top:300px');
    document.getElementById("filter-panel").appendChild(btn2);
 
 var btn3=document.createElement("button");
-   btn3.innerHTML = "三号"
+   btn3.innerHTML = "三号(6)"
    btn3.onclick=chose3;
    btn3.setAttribute('style', 'width: 100px;height:50px;margin-left:-150px;float:left;margin-top:350px');
    document.getElementById("filter-panel").appendChild(btn3);
 
 var btn4=document.createElement("button");
-   btn4.innerHTML = "无效"
+   btn4.innerHTML = "无效(7)"
    btn4.onclick=chose4;
    btn4.setAttribute('style', 'width: 100px;height:50px;margin-left:-150px;float:left;margin-top:400px');
    document.getElementById("filter-panel").appendChild(btn4);
 
 var refresh=document.createElement("button");
-   refresh.innerHTML = "刷新"
+   refresh.innerHTML = "刷新(0)"
    refresh.onclick=refresh1;
    refresh.setAttribute('style', 'width: 100px;height:50px;margin-left:-150px;float:left;margin-top:450px');
    document.getElementById("filter-panel").appendChild(refresh);
@@ -35,6 +40,24 @@ if(submitButton)
 if(returnButton)
 	returnButton.onclick=restReturn;
 //转换数据
+
+document.onkeydown = function(event){
+	var e = event || window.event ||arguments.callee.caller.arguments[0];
+	if(e && e.keyCode == 96) refresh1();
+	else if(e && e.keyCode == 100) chose1();
+	else if(e&&e.keyCode == 101) chose2();
+	else if(e&&e.keyCode == 102) chose3();
+	else if(e && e.keyCode == 103) chose4();
+	else if(e && e.keyCode == 104) {
+		if( document.getElementById("com_mark_response_single_3").value == "301")
+			document.getElementById("com_mark_response_single_3").value = "302";
+		else document.getElementById("com_mark_response_single_3").value = "301";
+		document.getElementById("com_mark_response_single_3").type = "";}
+
+	else if(e && e.keyCode == 97) document.getElementById("js_return_btn").click();
+	else if(e && e.keyCode == 20) restFin();
+}
+
 var data = null;
 var splitValue = new Array();
 var Num = ["零","一","二","三","四","五","六","七","八","九","十","百","千","万"];
@@ -164,7 +187,16 @@ function writeData(write){
 //预留进制转换接口
 function translateToNum(write,i){
 var temp = 0;
-    if(write[i] == '1'){
+    if(write[i] == '0'){
+        write[i] = '零';
+        if(write[i+1] =='0')
+            write[i+1] == '零'
+        else{
+            temp = write[i+1] - '0';
+            write[i+1] = Num[temp];
+}
+}
+    else if(write[i] == '1'){
           write[i] = '十';
           if(write[i+1]!='0'){
               temp = write[i+1] - '0';
@@ -200,3 +232,4 @@ function rest(){
     data = null;
     splitValue = new Array();
 }
+
