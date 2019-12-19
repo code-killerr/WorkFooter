@@ -1,9 +1,13 @@
 //按钮样式
 var text=document.createElement("div");
    text.innerHTML = "注意以下键位除提交外均为小键盘，8为儿童选项，1为归还题目，大小写键为提交，F5为刷新页面"
-   text.setAttribute('style', 'width: 100px;height:100px;margin-left:-150px;float:left;margin-top:100px');
+   text.setAttribute('style', 'width: 100px;height:100px;margin-left:-150px;float:left;margin-top:50px');
    document.getElementById("filter-panel").appendChild(text);
-
+var numbtn=document.createElement("button");
+   numbtn.innerHTML = "数字转写"
+   numbtn.onclick=numChose;
+   numbtn.setAttribute('style', 'width: 100px;height:50px;margin-left:-150px;float:left;margin-top:200px');
+   document.getElementById("filter-panel").appendChild(numbtn);
 var btn1=document.createElement("button");
    btn1.innerHTML = "一号(4)"
    btn1.onclick=chose1;
@@ -50,10 +54,9 @@ document.onkeydown = function(event){
 	else if(e && e.keyCode == 103) chose4();
 	else if(e && e.keyCode == 104) {
 		if( document.getElementById("com_mark_response_single_3").value == "301")
-			document.getElementById("com_mark_response_single_3").value = "302";
-		else document.getElementById("com_mark_response_single_3").value = "301";
-		document.getElementById("com_mark_response_single_3").type = "";}
-
+			bushiertong()
+		else shiertong();
+	}
 	else if(e && e.keyCode == 97) document.getElementById("js_return_btn").click();
 	else if(e && e.keyCode == 20) restFin();
 }
@@ -90,7 +93,65 @@ function refresh1(){
 	}
 	//处理数字
 	if(NumSign){
-		var sign = confirm("该数字是否为非进制数字(电话号码，房间号等)?");
+		alert("注意有阿拉伯数字出现")
+	}
+	if(ErSign){
+		alert("请注意有‘儿’字出没，小心整改");
+	}
+	data = write.join("");
+	splitValue = data.split(";");
+	console.log(splitValue);
+	chose1();
+	return;
+}
+//分割数据
+function chose1(){
+	if(splitValue[0] != null){
+		writeData(splitValue[0]);
+	}
+	else alert("无一号信息请刷新数据");
+	youxiao();
+	return;
+}
+
+function chose2(){
+	
+	if(splitValue[1] != null){
+		writeData(splitValue[1]);
+	}
+	else alert("无二号信息请刷新数据");
+	youxiao();
+		return;
+	
+}
+
+function chose3(){
+	if(splitValue[2] != null){
+		writeData(splitValue[2]);
+	}
+		
+	else alert("无三号信息请刷新数据");
+	youxiao()
+	return;
+	
+}
+//数据无效
+function chose4(){
+    var res ="<sil>";
+    wuxiao()
+    bushiertong()
+    document.getElementById("com_mark_response_text_2").value = res;
+}
+//输出数据
+function writeData(write){
+    document.getElementById("com_mark_response_text_2").value = write;
+}
+function numChose(){
+	data = document.getElementById("com_mark_response_text_2").value;
+	var write = data.split("");
+	var n = write.length;
+	var temp = 0;
+	var sign = confirm("该数字是否为非进制数字(电话号码，房间号等)?");
 		if(sign){
 			sign = confirm("该数字是否为电话号码?");
 			if(sign)
@@ -117,8 +178,8 @@ function refresh1(){
 				if(/^[0-9]$/.test(write[i])){
 					if(write[i+1]!=null&&/^[0-9]$/.test(write[i+1])){
 						write = translateToNum(write,i);
-                                                                                                n = write.length;
-                                                                                }
+                            n = write.length;
+                        }
 					else{
 						temp = write[i] - '0';
 						write[i] = Num[temp];
@@ -126,64 +187,10 @@ function refresh1(){
 					}
 				}
 			}	
-		alert("已经自动转换,请自行确认一下是否正确");
-	}
-	if(ErSign){
-		alert("请注意有‘儿’字出没，小心整改");
-	}
 	data = write.join("");
-	splitValue = data.split(";");
-	console.log(splitValue);
-	chose1();
-	return;
-}
-//分割数据
-function chose1(){
-	if(splitValue[0] != null){
-		writeData(splitValue[0]);
-		document.getElementById("com_mark_response_single_1").value = "101";
-	}
-	else alert("无一号信息请刷新数据");
-	document.getElementById("com_mark_response_single_1").value = "101";
-		return;
+	document.getElementById("com_mark_response_text_2").value = data;
 }
 
-function chose2(){
-	
-	if(splitValue[1] != null){
-		writeData(splitValue[1]);
-		document.getElementById("com_mark_response_single_1").value = "101";
-	}
-	else alert("无二号信息请刷新数据");
-	document.getElementById("com_mark_response_single_1").value = "101";
-		return;
-	
-}
-
-function chose3(){
-	if(splitValue[2] != null){
-		writeData(splitValue[2]);
-		document.getElementById("com_mark_response_single_1").value = "101";
-	}
-		
-	else alert("无三号信息请刷新数据");
-	
-		return;
-	
-}
-//数据无效
-function chose4(){
-    var res ="<sil>";
-    document.getElementById("com_mark_response_single_1").value = "102";
-    document.getElementById("com_mark_response_single_1").type = "";
-    document.getElementById("com_mark_response_single_3").value = "302";
-    document.getElementById("com_mark_response_single_3").type = "";
-    document.getElementById("com_mark_response_text_2").value = res;
-}
-//输出数据
-function writeData(write){
-    document.getElementById("com_mark_response_text_2").value = write;
-}
 //预留进制转换接口
 function translateToNum(write,i){
 var temp = 0;
@@ -233,3 +240,25 @@ function rest(){
     splitValue = new Array();
 }
 
+function youxiao(){
+	document.getElementById("com_mark_response_single_1").value = '101';
+	document.querySelector("body > div.container.container-main > div > div.pro-main.clearfix > div > div.com-mark-wrap > div > div:nth-child(2) > div.com-mark-pq-choice > div > div:nth-child(2)").className = "com-mark-pq-single js-com-mark-pq-single com-mark-pq-choice-choiceshow active";
+	document.querySelector("body > div.container.container-main > div > div.pro-main.clearfix > div > div.com-mark-wrap > div > div:nth-child(2) > div.com-mark-pq-choice > div > div:nth-child(3)").className = "com-mark-pq-single js-com-mark-pq-single com-mark-pq-choice-choiceshow";
+	
+}
+function wuxiao(){
+	document.getElementById("com_mark_response_single_1").value = '102';
+	document.querySelector("body > div.container.container-main > div > div.pro-main.clearfix > div > div.com-mark-wrap > div > div:nth-child(2) > div.com-mark-pq-choice > div > div:nth-child(2)").className = "com-mark-pq-single js-com-mark-pq-single com-mark-pq-choice-choiceshow";
+	document.querySelector("body > div.container.container-main > div > div.pro-main.clearfix > div > div.com-mark-wrap > div > div:nth-child(2) > div.com-mark-pq-choice > div > div:nth-child(3)").className = "com-mark-pq-single js-com-mark-pq-single com-mark-pq-choice-choiceshow active";
+}
+function shiertong(){
+	document.getElementById("com_mark_response_single_3").value = "301";
+	document.querySelector("body > div.container.container-main > div > div.pro-main.clearfix > div > div.com-mark-wrap > div > div:nth-child(4) > div.com-mark-pq-choice > div > div:nth-child(2)").className = "com-mark-pq-single js-com-mark-pq-single com-mark-pq-choice-choiceshow active"
+	document.querySelector("body > div.container.container-main > div > div.pro-main.clearfix > div > div.com-mark-wrap > div > div:nth-child(4) > div.com-mark-pq-choice > div > div:nth-child(3)").className = "com-mark-pq-single js-com-mark-pq-single com-mark-pq-choice-choiceshow cm-answer-user cm-answer-right"
+}
+function bushiertong(){
+	document.getElementById("com_mark_response_single_3").value = "302";
+	document.querySelector("body > div.container.container-main > div > div.pro-main.clearfix > div > div.com-mark-wrap > div > div:nth-child(4) > div.com-mark-pq-choice > div > div:nth-child(2)").className = 'com-mark-pq-single js-com-mark-pq-single com-mark-pq-choice-choiceshow'
+	document.querySelector("body > div.container.container-main > div > div.pro-main.clearfix > div > div.com-mark-wrap > div > div:nth-child(4) > div.com-mark-pq-choice > div > div:nth-child(3)").className = 'com-mark-pq-single js-com-mark-pq-single com-mark-pq-choice-choiceshow active'
+	
+}
