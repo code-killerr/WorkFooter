@@ -59,6 +59,7 @@ document.onkeydown = function(event){
 	}
 	else if(e && e.keyCode == 97) document.getElementById("js_return_btn").click();
 	else if(e && e.keyCode == 20) restFin();
+	else if(e&& e.keyCode == 105) numChose();
 }
 
 var data = null;
@@ -242,23 +243,23 @@ function rest(){
 
 function youxiao(){
 	document.getElementById("com_mark_response_single_1").value = '101';
-	document.querySelector("body > div.container.container-main > div > div.pro-main.clearfix > div > div.com-mark-wrap > div > div:nth-child(2) > div.com-mark-pq-choice > div > div:nth-child(2)").className = "com-mark-pq-single js-com-mark-pq-single com-mark-pq-choice-choiceshow active";
-	document.querySelector("body > div.container.container-main > div > div.pro-main.clearfix > div > div.com-mark-wrap > div > div:nth-child(2) > div.com-mark-pq-choice > div > div:nth-child(3)").className = "com-mark-pq-single js-com-mark-pq-single com-mark-pq-choice-choiceshow";
+	document.querySelector("body > div.container.container-main > div.wrapper > div.pro-main > div.pro-content > div.com-mark-wrap > div > div:nth-child(2) > div.com-mark-pq-choice > div > div:nth-child(2)").className = "com-mark-pq-single js-com-mark-pq-single com-mark-pq-choice-choiceshow active";
+	document.querySelector("body > div.container.container-main > div.wrapper > div.pro-main > div.pro-content > div.com-mark-wrap > div > div:nth-child(2) > div.com-mark-pq-choice > div > div:nth-child(3)").className = "com-mark-pq-single js-com-mark-pq-single com-mark-pq-choice-choiceshow";
 	
 }
 function wuxiao(){
 	document.getElementById("com_mark_response_single_1").value = '102';
-	document.querySelector("body > div.container.container-main > div > div.pro-main.clearfix > div > div.com-mark-wrap > div > div:nth-child(2) > div.com-mark-pq-choice > div > div:nth-child(2)").className = "com-mark-pq-single js-com-mark-pq-single com-mark-pq-choice-choiceshow";
-	document.querySelector("body > div.container.container-main > div > div.pro-main.clearfix > div > div.com-mark-wrap > div > div:nth-child(2) > div.com-mark-pq-choice > div > div:nth-child(3)").className = "com-mark-pq-single js-com-mark-pq-single com-mark-pq-choice-choiceshow active";
+	document.querySelector("body > div.container.container-main > div.wrapper > div.pro-main > div.pro-content > div.com-mark-wrap > div > div:nth-child(2) > div.com-mark-pq-choice > div > div:nth-child(2)").className = "com-mark-pq-single js-com-mark-pq-single com-mark-pq-choice-choiceshow";
+	document.querySelector("body > div.container.container-main > div.wrapper > div.pro-main > div.pro-content > div.com-mark-wrap > div > div:nth-child(2) > div.com-mark-pq-choice > div > div:nth-child(3)").className = "com-mark-pq-single js-com-mark-pq-single com-mark-pq-choice-choiceshow active";
 }
 function shiertong(){
 	document.getElementById("com_mark_response_single_3").value = "301";
-	document.querySelector("body > div.container.container-main > div > div.pro-main.clearfix > div > div.com-mark-wrap > div > div:nth-child(4) > div.com-mark-pq-choice > div > div:nth-child(2)").className = "com-mark-pq-single js-com-mark-pq-single com-mark-pq-choice-choiceshow active"
-	document.querySelector("body > div.container.container-main > div > div.pro-main.clearfix > div > div.com-mark-wrap > div > div:nth-child(4) > div.com-mark-pq-choice > div > div:nth-child(3)").className = "com-mark-pq-single js-com-mark-pq-single com-mark-pq-choice-choiceshow cm-answer-user cm-answer-right"
+	document.querySelector("body > div.container.container-main > div.wrapper > div.pro-main > div.pro-content > div.com-mark-wrap > div > div:nth-child(4) > div.com-mark-pq-choice > div > div:nth-child(2)").className = "com-mark-pq-single js-com-mark-pq-single com-mark-pq-choice-choiceshow active"
+	document.querySelector("body > div.container.container-main > div.wrapper > div.pro-main > div.pro-content > div.com-mark-wrap > div > div:nth-child(4) > div.com-mark-pq-choice > div > div:nth-child(3)").className = "com-mark-pq-single js-com-mark-pq-single com-mark-pq-choice-choiceshow cm-answer-user cm-answer-right"
 }
 function bushiertong(){
 	document.getElementById("com_mark_response_single_3").value = "302";
-	document.querySelector("body > div.container.container-main > div > div.pro-main.clearfix > div > div.com-mark-wrap > div > div:nth-child(4) > div.com-mark-pq-choice > div > div:nth-child(2)").className = 'com-mark-pq-single js-com-mark-pq-single com-mark-pq-choice-choiceshow'
-	document.querySelector("body > div.container.container-main > div > div.pro-main.clearfix > div > div.com-mark-wrap > div > div:nth-child(4) > div.com-mark-pq-choice > div > div:nth-child(3)").className = 'com-mark-pq-single js-com-mark-pq-single com-mark-pq-choice-choiceshow active'
+	document.querySelector("body > div.container.container-main > div.wrapper > div.pro-main > div.pro-content > div.com-mark-wrap > div > div:nth-child(4) > div.com-mark-pq-choice > div > div:nth-child(2)").className = 'com-mark-pq-single js-com-mark-pq-single com-mark-pq-choice-choiceshow'
+	document.querySelector("body > div.container.container-main > div.wrapper > div.pro-main > div.pro-content > div.com-mark-wrap > div > div:nth-child(4) > div.com-mark-pq-choice > div > div:nth-child(3)").className = 'com-mark-pq-single js-com-mark-pq-single com-mark-pq-choice-choiceshow active'
 	
 }
